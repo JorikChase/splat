@@ -1,277 +1,310 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" dir="ltr">
-	<head>
-		<title>WebGL Gaussian Splat Viewer</title>
-		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
-		/>
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta
-			name="apple-mobile-web-app-status-bar-style"
-			content="black-translucent"
-		/>
-		<style>
-			body {
-				overflow: hidden;
-				margin: 0;
-				height: 100vh;
-				width: 100vw;
-				font-family: sans-serif;
-				background: black;
-    			text-shadow: 0 0 3px black;
-			}
-			a, body {
-				color: white;
-			}
-			#info {
-				z-index: 100;
-				position: absolute;
-				top: 10px;
-				left: 15px;
-			}
-			h3 {
-				margin: 5px 0;
-			}
-			p {
-				margin: 5px 0;
-				font-size: small;
-			}
+    <head>
+        <title>WebGL Gaussian Splat Viewer</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Fascinate&family=Silkscreen:wght@400;700&display=swap');
+                body {
+                        overflow: hidden;
+                        margin: 0;
+                        height: 100vh;
+                        width: 100vw;
+                        font-family: "Fascinate", system-ui;
+                          font-weight: 400;
+                          font-style: normal;
+                        }
+                        background: black;
+                        text-shadow: 0 0 3px black;
+                    }
+                    a,
+                    body {
+                        color: white;
+                    }
+                    #info {
+                        z-index: 100;
+                        position: absolute;
+                        top: 10px;
+                        left: 15px;
+                    }
+                    h3 {
+                        margin: 5px 0;
+                    }
+                    p {
+                        margin: 5px 0;
+                        font-size: small;
+                    }
+                    .silkscreen-regular {
+                      font-family: "Silkscreen", sans-serif;
+                      font-weight: 400;
+                      font-style: normal;
+                    }
 
-			.cube-wrapper {
-				transform-style: preserve-3d;
-			}
+                    .silkscreen-bold {
+                      font-family: "Silkscreen", sans-serif;
+                      font-weight: 700;
+                      font-style: normal;
+                    }
 
-			.cube {
-				transform-style: preserve-3d;
-				transform: rotateX(45deg) rotateZ(45deg);
-				animation: rotation 2s infinite;
-			}
+                    .cube-wrapper {
+                        transform-style: preserve-3d;
+                    }
 
-			.cube-faces {
-				transform-style: preserve-3d;
-				height: 80px;
-				width: 80px;
-				position: relative;
-				transform-origin: 0 0;
-				transform: translateX(0) translateY(0) translateZ(-40px);
-			}
+                    .cube {
+                        transform-style: preserve-3d;
+                        transform: rotateX(45deg) rotateZ(45deg);
+                        animation: rotation 2s infinite;
+                    }
 
-			.cube-face {
-				position: absolute;
-				inset: 0;
-				background: #0017ff;
-				border: solid 1px #ffffff;
-			}
-			.cube-face.top {
-				transform: translateZ(80px);
-			}
-			.cube-face.front {
-				transform-origin: 0 50%;
-				transform: rotateY(-90deg);
-			}
-			.cube-face.back {
-				transform-origin: 0 50%;
-				transform: rotateY(-90deg) translateZ(-80px);
-			}
-			.cube-face.right {
-				transform-origin: 50% 0;
-				transform: rotateX(-90deg) translateY(-80px);
-			}
-			.cube-face.left {
-				transform-origin: 50% 0;
-				transform: rotateX(-90deg) translateY(-80px) translateZ(80px);
-			}
+                    .cube-faces {
+                        transform-style: preserve-3d;
+                        height: 80px;
+                        width: 80px;
+                        position: relative;
+                        transform-origin: 0 0;
+                        transform: translateX(0) translateY(0) translateZ(-40px);
+                    }
 
-			@keyframes rotation {
-				0% {
-					transform: rotateX(45deg) rotateY(0) rotateZ(45deg);
-					animation-timing-function: cubic-bezier(
-						0.17,
-						0.84,
-						0.44,
-						1
-					);
-				}
-				50% {
-					transform: rotateX(45deg) rotateY(0) rotateZ(225deg);
-					animation-timing-function: cubic-bezier(
-						0.76,
-						0.05,
-						0.86,
-						0.06
-					);
-				}
-				100% {
-					transform: rotateX(45deg) rotateY(0) rotateZ(405deg);
-					animation-timing-function: cubic-bezier(
-						0.17,
-						0.84,
-						0.44,
-						1
-					);
-				}
-			}
+                    .cube-face {
+                        position: absolute;
+                        inset: 0;
+                        background: transparent;
+                        border: solid 2px black;
+                        border-radius: 15px;
+                    }
+                    .cube-face.top {
+                        transform: translateZ(80px);
+                    }
+                    .cube-face.front {
+                        transform-origin: 0 50%;
+                        transform: rotateY(-90deg);
+                    }
+                    .cube-face.back {
+                        transform-origin: 0 50%;
+                        transform: rotateY(-90deg) translateZ(-80px);
+                    }
+                    .cube-face.right {
+                        transform-origin: 50% 0;
+                        transform: rotateX(-90deg) translateY(-80px);
+                    }
+                    .cube-face.left {
+                        transform-origin: 50% 0;
+                        transform: rotateX(-90deg) translateY(-80px) translateZ(80px);
+                    }
 
-			.scene,
-			#message {
-				position: absolute;
-				display: flex;
-				top: 0;
-				right: 0;
-				left: 0;
-				bottom: 0;
-				z-index: 2;
-				height: 100%;
-				width: 100%;
-				align-items: center;
-				justify-content: center;
-			}
-			#message {
-				font-weight: bold;
-				font-size: large;
-				color: red;
-				pointer-events: none;
-			}
+                    @keyframes rotation {
+                        0% {
+                            transform: rotateX(45deg) rotateY(0) rotateZ(45deg);
+                            animation-timing-function: cubic-bezier(
+                                0.17,
+                                0.84,
+                                0.44,
+                                1
+                            );
+                        }
+                        50% {
+                            transform: rotateX(45deg) rotateY(0) rotateZ(225deg);
+                            animation-timing-function: cubic-bezier(
+                                0.76,
+                                0.05,
+                                0.86,
+                                0.06
+                            );
+                        }
+                        100% {
+                            transform: rotateX(45deg) rotateY(0) rotateZ(405deg);
+                            animation-timing-function: cubic-bezier(
+                                0.17,
+                                0.84,
+                                0.44,
+                                1
+                            );
+                        }
+                    }
 
-			details {
-				font-size: small;
+                    .scene,
+                    #message {
+                        position: absolute;
+                        display: flex;
+                        top: 0;
+                        right: 0;
+                        left: 0;
+                        bottom: 0;
+                        z-index: 2;
+                        height: 100%;
+                        width: 100%;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    #message {
+                        font-weight: bold;
+                        font-size: large;
+                        color: red;
+                        pointer-events: none;
+                    }
 
-			}
+                    details {
+                        font-size: small;
+                    }
 
-			#progress {
-				position: absolute;
-				top: 0;
-				height: 5px;
-				background: blue;
-				z-index: 99;
-				transition: width 0.1s ease-in-out;
-			}
+                    #progress {
+                        position: absolute;
+                        top: 0;
+                        height: 5px;
+                        background: blue;
+                        z-index: 99;
+                        transition: width 0.1s ease-in-out;
+                    }
 
-			#quality {
-				position: absolute;
-				bottom: 10px;
-				z-index: 999;
-				right: 10px;
-			}
+                    #quality {
+                        position: absolute;
+                        bottom: 10px;
+                        z-index: 999;
+                        right: 10px;
+                    }
 
-			#caminfo {
-				position: absolute;
-				top: 10px;
-				z-index: 999;
-				right: 10px;
-			}
-			#canvas {
-				display: block;
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				touch-action: none;
-			}
+                    #caminfo {
+                        position: absolute;
+                        top: 10px;
+                        z-index: 999;
+                        right: 10px;
+                    }
+                    #canvas {
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        touch-action: none;
+                        filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b' x='0' y='0'%3E%3CfeFlood x='4' y='4' height='2' width='2'/%3E%3CfeComposite width='10' height='10'/%3E%3CfeTile result='a'/%3E%3CfeComposite in='SourceGraphic' in2='a' operator='in'/%3E%3CfeMorphology operator='dilate' radius='5'/%3E%3C/filter%3E%3C/svg%3E#b");
+                    }
 
-			#instructions {
-				background: rgba(0,0,0,0.6);
-				white-space: pre-wrap;
-				padding: 10px;
-				border-radius: 10px;
-				font-size: x-small;
-			}
-			body.nohf .nohf {
-				display: none;
-			}
-			body.nohf #progress, body.nohf .cube-face {
-				background: #ff9d0d;
-			}
-		</style>
-	</head>
-	<body>
-		<script>
-			if(location.host.includes('hf.space')) document.body.classList.add('nohf');
-		</script>
-		<div id="info">
-			<h3 class="nohf">WebGL 3D Gaussian Splat Viewer</h3>
-			<p>
-			<small class="nohf">
-				By <a href="https://twitter.com/antimatter15">Kevin Kwok</a>.
-				Code on
-				<a href="https://github.com/antimatter15/splat">Github</a
-				>.
-			</small>
-		</p>
+                    #instructions {
+                        background: rgba(0, 0, 0, 0.6);
+                        white-space: pre-wrap;
+                        padding: 10px;
+                        border-radius: 10px;
+                        font-size: x-small;
+                    }
+                    body.nohf .nohf {
+                        display: none;
+                    }
+                    body.nohf #progress,
+                    body.nohf .cube-face {
+                        background: #ff9d0d;
+                    }
 
-			<details>
-			<summary>Use mouse or arrow keys to navigate.</summary>
+                    /* Brutalist Enter Button */
+                    #enter-button {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: rgba(255, 255, 255, 0.8);
+                        color: #000000;
+                        font-family: monospace;
+                        font-weight: bold;
+                        font-size: 18px;
+                        padding: 15px 30px;
+                        border: 3px solid #000000;
+                        cursor: pointer;
+                        z-index: 1000;
+                        box-shadow: 8px 8px 0px #000000;
+                        text-transform: uppercase;
+                        letter-spacing: 2px;
+                        transition:
+                            box-shadow 0.2s,
+                            transform 0.2s;
+                    }
 
-<div id="instructions">movement (arrow keys)
-- left/right arrow keys to strafe side to side
-- up/down arrow keys to move forward/back
-- space to jump
+                    #enter-button:hover {
+                        background: white;
+                        transform: translate(-49%, -49%);
+                    }
 
-camera angle (wasd)
-- a/d to turn camera left/right
-- w/s to tilt camera up/down
-- q/e to roll camera counterclockwise/clockwise
-- i/k and j/l to orbit
+                    #enter-button:active {
+                        box-shadow: 4px 4px 0px #000000;
+                        transform: translate(-47%, -47%);
+                    }
+        </style>
+    </head>
+    <body>
+        <!-- <div id="info">
+            <details>
+                <summary>Use mouse or arrow keys to navigate.</summary>
 
-trackpad
-- scroll up/down/left/right to orbit
-- pinch to move forward/back
-- ctrl key + scroll to move forward/back
-- shift + scroll to move up/down or strafe
+                <div id="instructions">
+                    movement (arrow keys) - left/right arrow keys to strafe side
+                    to side - up/down arrow keys to move forward/back - space to
+                    jump camera angle (wasd) - a/d to turn camera left/right -
+                    w/s to tilt camera up/down - q/e to roll camera
+                    counterclockwise/clockwise - i/k and j/l to orbit trackpad -
+                    scroll up/down/left/right to orbit - pinch to move
+                    forward/back - ctrl key + scroll to move forward/back -
+                    shift + scroll to move up/down or strafe mouse - click and
+                    drag to orbit - right click (or ctrl/cmd key) and drag
+                    up/down to move touch (mobile) - one finger to orbit - two
+                    finger pinch to move forward/back - two finger rotate to
+                    rotate camera clockwise/counterclockwise - two finger pan to
+                    move side-to-side and up-down gamepad - if you have a game
+                    controller connected it should work other - press 0-9 to
+                    switch to one of the pre-loaded camera views - press '-' or
+                    '+'key to cycle loaded cameras - press p to resume default
+                    animation - drag and drop .ply file to convert to .splat -
+                    drag and drop cameras.json to load cameras
+                </div>
+            </details>
+        </div> -->
 
-mouse
-- click and drag to orbit
-- right click (or ctrl/cmd key) and drag up/down to move
+        <div id="progress"></div>
 
-touch (mobile)
-- one finger to orbit
-- two finger pinch to move forward/back
-- two finger rotate to rotate camera clockwise/counterclockwise
-- two finger pan to move side-to-side and up-down
+        <div id="message"></div>
+        <div class="scene" id="spinner">
+            <div class="cube-wrapper">
+                <div class="cube">
+                    <div class="cube-faces">
+                        <div class="cube-face bottom"></div>
+                        <div class="cube-face top"></div>
+                        <div class="cube-face left"></div>
+                        <div class="cube-face right"></div>
+                        <div class="cube-face back"></div>
+                        <div class="cube-face front"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <canvas id="canvas"></canvas>
 
-gamepad
-- if you have a game controller connected it should work
+        <!-- Brutalist Enter Button -->
+        <button id="enter-button" class="silkscreen-bold">BREATHE IN</button>
 
-other
-- press 0-9 to switch to one of the pre-loaded camera views
-- press '-' or '+'key to cycle loaded cameras
-- press p to resume default animation
-- drag and drop .ply file to convert to .splat
-- drag and drop cameras.json to load cameras
-</div>
-
-		</details>
-			
-		</div>
-
-		<div id="progress"></div>
-
-		<div id="message"></div>
-		<div class="scene" id="spinner">
-			<div class="cube-wrapper">
-				<div class="cube">
-					<div class="cube-faces">
-						<div class="cube-face bottom"></div>
-						<div class="cube-face top"></div>
-						<div class="cube-face left"></div>
-						<div class="cube-face right"></div>
-						<div class="cube-face back"></div>
-						<div class="cube-face front"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<canvas id="canvas"></canvas>
-
-		<div id="quality">
-			<span id="fps"></span>
-		</div>
-		<div id="caminfo">
-			<span id="camid"></span>
-		</div>
-		<script src="main.js"></script>
-	</body>
+        <div id="quality">
+            <span id="fps"></span>
+        </div>
+        <div id="caminfo">
+            <span id="camid"></span>
+        </div>
+        <script src="main.js"></script>
+        <script>
+            // Script to handle the enter button click
+            document
+                .getElementById("enter-button")
+                .addEventListener("click", function () {
+                    // Remove the filter from the canvas
+                    document.getElementById("canvas").style.filter = "none";
+                    // Hide the enter button
+                    this.style.display = "none";
+                });
+        </script>
+    </body>
 </html>
