@@ -4,7 +4,7 @@ let cameras = [
     img_name: "00001",
     width: 1959,
     height: 1090,
-    position: [-3.0089893469241797, -0.11086489695181866, -3.7527640949141428],
+    position: [-0.0089893469241797, -0.11086489695181866, -0.7527640949141428],
     rotation: [
       [0.876134201218856, 0.06925962026449776, 0.47706599800804744],
       [-0.04747421839895102, 0.9972110940209488, -0.057586739349882114],
@@ -24,8 +24,8 @@ let cameras = [
       [0.0065061360949636325, 0.9955928229282383, -0.09355533724430458],
       [0.058381769258182864, 0.09301955098900708, 0.9939511719154457],
     ],
-    fy: 1164.6601287484507,
-    fx: 1159.5880733038064,
+    fy: 1.6601287484507,
+    fx: 1.5880733038064,
   },
   {
     id: 2,
@@ -721,17 +721,31 @@ let defaultViewMatrix = [
 let viewMatrix = defaultViewMatrix;
 async function main() {
   let carousel = true;
-  const params = new URLSearchParams(location.search);
+  const params = new URLSearchParams(location.search); // This works now!
   try {
-    viewMatrix = JSON.parse(decodeURIComponent(location.hash.slice(1)));
+    const viewMatrix = JSON.parse(decodeURIComponent(location.hash.slice(1)));
     carousel = false;
   } catch (err) {}
-  const url = new URL(
-    // "nike.splat",
-    // location.href,
-    params.get("url") || "model.splat",
-    "https://zsprodeti.cz/images/",
-  );
+
+  // Construct the URL relative to the local server
+  const splatFileName = params.get("url") || "model.splat"; // Get filename from query (?url=other.splat) or default
+
+  // Assuming the .splat file is in the same directory or a subdirectory
+  const url = new URL(splatFileName, location.href); // Use location.href as the base
+
+  // Or if splat files are always in an 'images' subfolder:
+  // const url = new URL(`images/${splatFileName}`, location.href);
+
+  console.log("Loading splat from URL:", url.href);
+
+  // --- Your existing logic to load from the URL ---
+  try {
+    // Presuming you have a function like loadSplatFromUrl(url.href)
+    // await loadSplatFromUrl(url.href);
+    console.log(`Successfully loaded ${splatFileName}`);
+  } catch (err) {
+    console.error(`Error loading ${splatFileName}:`, err);
+  }
   const req = await fetch(url, {
     mode: "cors", // no-cors, *cors, same-origin
     credentials: "omit", // include, *same-origin, omit
@@ -1429,5 +1443,5 @@ async function main() {
 
 main().catch((err) => {
   document.getElementById("spinner").style.display = "none";
-  document.getElementById("message").innerText = err.toString();
+  //document.getElementById("message").innerText = err.toString();
 });
