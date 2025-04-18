@@ -13,239 +13,238 @@
             content="black-translucent"
         />
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Fascinate&family=Silkscreen:wght@400;700&display=swap');
-                body {
-                        overflow: hidden;
-                        margin: 0;
-                        height: 100vh;
-                        width: 100vw;
-                        font-family: "Fascinate", system-ui;
-                          font-weight: 400;
-                          font-style: normal;
-                        }
-                        background: black;
-                        text-shadow: 0 0 3px black;
-                    }
-                    a,
-                    body {
-                        color: white;
-                    }
-                    a .landing-link{z-index: 10000!important; color: black;}
-                    #info {
-                        z-index: 100;
-                        position: absolute;
-                        top: 10px;
-                        left: 15px;
-                    }
-                    /* Hide caminfo and fps elements */
-#caminfo, #fps {
-  display: none;
-}
-                    h3 {
-                        margin: 5px 0;
-                    }
-                    p {
-                        margin: 5px 0;
-                        font-size: small;
-                    }
-                    .silkscreen-regular {
-                      font-family: "Silkscreen", sans-serif;
-                      font-weight: 400;
-                      font-style: normal;
-                    }
+                        @import url('https://fonts.googleapis.com/css2?family=Fascinate&family=Silkscreen:wght@400;700&display=swap');
+                            body {
+                                    overflow: hidden;
+                                    margin: 0;
+                                    height: 100vh;
+                                    width: 100vw;
+                                    font-family: "Fascinate", system-ui;
+                                      font-weight: 400;
+                                      font-style: normal;
+                                    }
+                                    background: black;
+                                    text-shadow: 0 0 3px black;
+                                }
+                                a,
+                                body {
+                                    color: white;
+                                }
+                                a .landing-link{z-index: 10000!important; color: black;}
+                                #info {
+                                    z-index: 100;
+                                    position: absolute;
+                                    top: 10px;
+                                    left: 15px;
+                                }
+                                /* Hide caminfo and fps elements */
+            #caminfo, #fps {
+              display: none;
+            }
+                                h3 {
+                                    margin: 5px 0;
+                                }
+                                p {
+                                    margin: 5px 0;
+                                    font-size: small;
+                                }
+                                .silkscreen-regular {
+                                  font-family: "Silkscreen", sans-serif;
+                                  font-weight: 400;
+                                  font-style: normal;
+                                }
 
-                    .silkscreen-bold {
-                      font-family: "Silkscreen", sans-serif;
-                      font-weight: 700;
-                      font-style: normal;
-                    }
+                                .silkscreen-bold {
+                                  font-family: "Silkscreen", sans-serif;
+                                  font-weight: 700;
+                                  font-style: normal;
+                                }
 
-                    .cube-wrapper {
-                        transform-style: preserve-3d;
-                    }
+                                .cube-wrapper {
+                                    transform-style: preserve-3d;
+                                }
 
-                    .cube {
-                        transform-style: preserve-3d;
-                        transform: rotateX(45deg) rotateZ(45deg);
-                        animation: rotation 2s infinite;
-                    }
+                                .cube {
+                                    transform-style: preserve-3d;
+                                    transform: rotateX(45deg) rotateZ(45deg);
+                                    animation: rotation 2s infinite;
+                                }
 
-                    .cube-faces {
-                        transform-style: preserve-3d;
-                        height: 80px;
-                        width: 80px;
-                        position: relative;
-                        transform-origin: 0 0;
-                        transform: translateX(0) translateY(0) translateZ(-40px);
-                    }
+                                .cube-faces {
+                                    transform-style: preserve-3d;
+                                    height: 80px;
+                                    width: 80px;
+                                    position: relative;
+                                    transform-origin: 0 0;
+                                    transform: translateX(0) translateY(0) translateZ(-40px);
+                                }
 
-                    .cube-face {
-                        position: absolute;
-                        inset: 0;
-                        background: transparent;
-                        border: solid 2px black;
-                        border-radius: 15px;
-                    }
-                    .cube-face.top {
-                        transform: translateZ(80px);
-                    }
-                    .cube-face.front {
-                        transform-origin: 0 50%;
-                        transform: rotateY(-90deg);
-                    }
-                    .cube-face.back {
-                        transform-origin: 0 50%;
-                        transform: rotateY(-90deg) translateZ(-80px);
-                    }
-                    .cube-face.right {
-                        transform-origin: 50% 0;
-                        transform: rotateX(-90deg) translateY(-80px);
-                    }
-                    .cube-face.left {
-                        transform-origin: 50% 0;
-                        transform: rotateX(-90deg) translateY(-80px) translateZ(80px);
-                    }
+                                .cube-face {
+                                    position: absolute;
+                                    inset: 0;
+                                    background: transparent;
+                                    border: solid 2px black;
+                                    border-radius: 15px;
+                                }
+                                .cube-face.top {
+                                    transform: translateZ(80px);
+                                }
+                                .cube-face.front {
+                                    transform-origin: 0 50%;
+                                    transform: rotateY(-90deg);
+                                }
+                                .cube-face.back {
+                                    transform-origin: 0 50%;
+                                    transform: rotateY(-90deg) translateZ(-80px);
+                                }
+                                .cube-face.right {
+                                    transform-origin: 50% 0;
+                                    transform: rotateX(-90deg) translateY(-80px);
+                                }
+                                .cube-face.left {
+                                    transform-origin: 50% 0;
+                                    transform: rotateX(-90deg) translateY(-80px) translateZ(80px);
+                                }
 
-                    @keyframes rotation {
-                        0% {
-                            transform: rotateX(45deg) rotateY(0) rotateZ(45deg);
-                            animation-timing-function: cubic-bezier(
-                                0.17,
-                                0.84,
-                                0.44,
-                                1
-                            );
-                        }
-                        50% {
-                            transform: rotateX(45deg) rotateY(0) rotateZ(225deg);
-                            animation-timing-function: cubic-bezier(
-                                0.76,
-                                0.05,
-                                0.86,
-                                0.06
-                            );
-                        }
-                        100% {
-                            transform: rotateX(45deg) rotateY(0) rotateZ(405deg);
-                            animation-timing-function: cubic-bezier(
-                                0.17,
-                                0.84,
-                                0.44,
-                                1
-                            );
-                        }
-                    }
+                                @keyframes rotation {
+                                    0% {
+                                        transform: rotateX(45deg) rotateY(0) rotateZ(45deg);
+                                        animation-timing-function: cubic-bezier(
+                                            0.17,
+                                            0.84,
+                                            0.44,
+                                            1
+                                        );
+                                    }
+                                    50% {
+                                        transform: rotateX(45deg) rotateY(0) rotateZ(225deg);
+                                        animation-timing-function: cubic-bezier(
+                                            0.76,
+                                            0.05,
+                                            0.86,
+                                            0.06
+                                        );
+                                    }
+                                    100% {
+                                        transform: rotateX(45deg) rotateY(0) rotateZ(405deg);
+                                        animation-timing-function: cubic-bezier(
+                                            0.17,
+                                            0.84,
+                                            0.44,
+                                            1
+                                        );
+                                    }
+                                }
 
-                    .scene,
-                    #message {
-                        position: absolute;
-                        display: flex;
-                        top: 0;
-                        right: 0;
-                        left: 0;
-                        bottom: 0;
-                        z-index: 2;
-                        height: 100%;
-                        width: 100%;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                    #message {
-                        font-weight: bold;
-                        font-size: large;
-                        color: red;
-                        pointer-events: none;
-                    }
+                                .scene,
+                                #message {
+                                    position: absolute;
+                                    display: flex;
+                                    top: 0;
+                                    right: 0;
+                                    left: 0;
+                                    bottom: 0;
+                                    z-index: 2;
+                                    height: 100%;
+                                    width: 100%;
+                                    align-items: center;
+                                    justify-content: center;
+                                }
+                                #message {
+                                    font-weight: bold;
+                                    font-size: large;
+                                    color: red;
+                                    pointer-events: none;
+                                }
 
-                    details {
-                        font-size: small;
-                    }
+                                details {
+                                    font-size: small;
+                                }
 
-                    #progress {
-                        position: absolute;
-                        top: 0;
-                        height: 5px;
-                        background: blue;
-                        z-index: 99;
-                        transition: width 0.1s ease-in-out;
-                    }
+                                #progress {
+                                    position: absolute;
+                                    top: 0;
+                                    height: 5px;
+                                    background: blue;
+                                    z-index: 99;
+                                    transition: width 0.1s ease-in-out;
+                                }
 
-                    #quality {
-                        position: absolute;
-                        bottom: 10px;
-                        z-index: 999;
-                        right: 10px;
-                    }
+                                #quality {
+                                    position: absolute;
+                                    bottom: 10px;
+                                    z-index: 999;
+                                    right: 10px;
+                                }
 
-                    #caminfo {
-                        position: absolute;
-                        top: 10px;
-                        z-index: 999;
-                        right: 10px;
-                    }
-                    #canvas {
-                        display: block;
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100svw;
-                        height: 100svh;
-                        touch-action: none;
-                        z-index: -1;
-                        filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b' x='0' y='0'%3E%3CfeFlood x='4' y='4' height='2' width='2'/%3E%3CfeComposite width='10' height='10'/%3E%3CfeTile result='a'/%3E%3CfeComposite in='SourceGraphic' in2='a' operator='in'/%3E%3CfeMorphology operator='dilate' radius='5'/%3E%3C/filter%3E%3C/svg%3E#b");
-                    }
+                                #caminfo {
+                                    position: absolute;
+                                    top: 10px;
+                                    z-index: 999;
+                                    right: 10px;
+                                }
+                                #canvas {
+                                    display: block;
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    width: 100svw;
+                                    height: 100svh;
+                                    touch-action: none;
+                                    z-index: -1;
+                                    filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b' x='0' y='0'%3E%3CfeFlood x='4' y='4' height='2' width='2'/%3E%3CfeComposite width='10' height='10'/%3E%3CfeTile result='a'/%3E%3CfeComposite in='SourceGraphic' in2='a' operator='in'/%3E%3CfeMorphology operator='dilate' radius='5'/%3E%3C/filter%3E%3C/svg%3E#b");
+                                }
 
-                    #instructions {
-                        background: rgba(0, 0, 0, 0.6);
-                        white-space: pre-wrap;
-                        padding: 10px;
-                        border-radius: 10px;
-                        font-size: x-small;
-                    }
-                    body.nohf .nohf {
-                        display: none;
-                    }
-                    body.nohf #progress,
-                    body.nohf .cube-face {
-                        background: #ff9d0d;
-                    }
+                                #instructions {
+                                    background: rgba(0, 0, 0, 0.6);
+                                    white-space: pre-wrap;
+                                    padding: 10px;
+                                    border-radius: 10px;
+                                    font-size: x-small;
+                                }
+                                body.nohf .nohf {
+                                    display: none;
+                                }
+                                body.nohf #progress,
+                                body.nohf .cube-face {
+                                    background: #ff9d0d;
+                                }
 
-                    /* Brutalist Enter Button */
-                    #enter-button {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        background: rgba(255, 255, 255, 0.8);
-                        color: #000000;
-                        font-family: monospace;
-                        font-weight: bold;
-                        font-size: 18px;
-                        padding: 15px 30px;
-                        border: 3px solid #000000;
-                        cursor: pointer;
-                        z-index: 1000;
-                        box-shadow: 8px 8px 0px #000000;
-                        text-transform: uppercase;
-                        letter-spacing: 2px;
-                        transition:
-                            box-shadow 0.2s,
-                            transform 0.2s;
-                    }
+                                /* Brutalist Enter Button */
+                                #enter-button {
+                                    position: absolute;
+                                    top: 50%;
+                                    left: 50%;
+                                    transform: translate(-50%, -50%);
+                                    background: rgba(255, 255, 255, 0.8);
+                                    color: #000000;
+                                    font-family: monospace;
+                                    font-weight: bold;
+                                    font-size: 18px;
+                                    padding: 15px 30px;
+                                    border: 3px solid #000000;
+                                    cursor: pointer;
+                                    z-index: 1000;
+                                    box-shadow: 8px 8px 0px #000000;
+                                    text-transform: uppercase;
+                                    letter-spacing: 2px;
+                                    transition:
+                                        box-shadow 0.2s,
+                                        transform 0.2s;
+                                }
 
-                    #enter-button:hover {
-                        background: white;
-                        transform: translate(-49%, -49%);
-                    }
+                                #enter-button:hover {
+                                    background: white;
+                                    transform: translate(-49%, -49%);
+                                }
 
-                    #enter-button:active {
-                        box-shadow: 4px 4px 0px #000000;
-                        transform: translate(-47%, -47%);
-                    }
+                                #enter-button:active {
+                                    box-shadow: 4px 4px 0px #000000;
+                                    transform: translate(-47%, -47%);
+                                }
         </style>
     </head>
     <body>
-     
         <!-- <div id="info">
             <details>
                 <summary>Use mouse or arrow keys to navigate.</summary>
@@ -291,22 +290,12 @@
             </div>
         </div>
         <canvas id="canvas"></canvas>
-<span id="quality"></span><span id="fps"></span><span id="camid"></span><span id="caminfo"></span>
-   <a href="https://3die.fr" class="landing-link">3 DIE NEUE WELT</a>
+        <span id="quality"></span><span id="fps"></span><span id="camid"></span
+        ><span id="caminfo"></span>
+        <a href="https://3die.fr" class="landing-link">3 DIE NEUE WELT</a>
         <a class="landing-link" href="https://zsprodeti.cz/doma">...</a>
-        
+
         <button id="enter-button" class="silkscreen-bold">BREATHE IN</button>
         <script src="main.js"></script>
-        <script>
-            // Script to handle the enter button click
-            document
-                .getElementById("enter-button")
-                .addEventListener("click", function () {
-                    // Remove the filter from the canvas
-                    document.getElementById("canvas").style.filter = "none";
-                    // Hide the enter button
-                    this.style.display = "none";
-                });
-        </script>
     </body>
 </html>
