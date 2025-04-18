@@ -30,12 +30,17 @@
                     body {
                         color: white;
                     }
+                    a .landing-link{z-index: 10000!important; color: black;}
                     #info {
                         z-index: 100;
                         position: absolute;
                         top: 10px;
                         left: 15px;
                     }
+                    /* Hide caminfo and fps elements */
+#caminfo, #fps {
+  display: none;
+}
                     h3 {
                         margin: 5px 0;
                     }
@@ -183,10 +188,11 @@
                         position: absolute;
                         top: 0;
                         left: 0;
-                        width: 100%;
-                        height: 100%;
-                        /* touch-action: none;
-                        filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b' x='0' y='0'%3E%3CfeFlood x='4' y='4' height='2' width='2'/%3E%3CfeComposite width='10' height='10'/%3E%3CfeTile result='a'/%3E%3CfeComposite in='SourceGraphic' in2='a' operator='in'/%3E%3CfeMorphology operator='dilate' radius='5'/%3E%3C/filter%3E%3C/svg%3E#b"); */
+                        width: 100svw;
+                        height: 100svh;
+                        touch-action: none;
+                        z-index: -1;
+                        filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='b' x='0' y='0'%3E%3CfeFlood x='4' y='4' height='2' width='2'/%3E%3CfeComposite width='10' height='10'/%3E%3CfeTile result='a'/%3E%3CfeComposite in='SourceGraphic' in2='a' operator='in'/%3E%3CfeMorphology operator='dilate' radius='5'/%3E%3C/filter%3E%3C/svg%3E#b");
                     }
 
                     #instructions {
@@ -204,6 +210,7 @@
                         background: #ff9d0d;
                     }
 
+                    /* Brutalist Enter Button */
                     #enter-button {
                         position: absolute;
                         top: 50%;
@@ -238,6 +245,7 @@
         </style>
     </head>
     <body>
+     
         <!-- <div id="info">
             <details>
                 <summary>Use mouse or arrow keys to navigate.</summary>
@@ -283,15 +291,11 @@
             </div>
         </div>
         <canvas id="canvas"></canvas>
-
-        <!-- <button id="enter-button" class="silkscreen-bold">BREATHE IN</button> -->
-
-        <div id="quality">
-            <span id="fps"></span>
-        </div>
-        <div id="caminfo">
-            <span id="camid"></span>
-        </div>
+<span id="quality"></span><span id="fps"></span><span id="camid"></span><span id="caminfo"></span>
+   <a href="https://3die.fr" class="landing-link">3 DIE NEUE WELT</a>
+        <a class="landing-link" href="https://zsprodeti.cz/doma">...</a>
+        
+        <button id="enter-button" class="silkscreen-bold">BREATHE IN</button>
         <script src="main.js"></script>
         <script>
             // Script to handle the enter button click
