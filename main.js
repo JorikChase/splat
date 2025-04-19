@@ -728,7 +728,28 @@ async function main() {
   } catch (err) {}
 
   // Construct the URL relative to the local server
-  const splatFileName = params.get("url") || "model.splat"; // Get filename from query (?url=other.splat) or default
+  const defaultModelPaths = [
+    "/scenes/model_1.splat",
+    "/scenes/model_2.splat",
+    // Add more model paths here in the future like:
+    // "/scenes/another_model.splat",
+    // "/scenes/special_event_model.splat"
+  ];
+
+  // Function to get a random model path from the list
+  function getRandomDefaultModel() {
+    const randomIndex = Math.floor(Math.random() * defaultModelPaths.length);
+    return defaultModelPaths[randomIndex];
+  }
+
+  // Try to get the model path from the URL parameter
+  const urlParamValue = params.get("url");
+
+  // Use the URL parameter value if it exists, otherwise get a random default model
+  const splatFileName = urlParamValue || getRandomDefaultModel();
+
+  // You can log it to see which one was chosen (optional)
+  console.log("Loading splat file:", splatFileName); // Get filename from query (?url=other.splat) or default
 
   // Assuming the .splat file is in the same directory or a subdirectory
   const url = new URL(splatFileName, location.href); // Use location.href as the base
