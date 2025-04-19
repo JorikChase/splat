@@ -731,6 +731,7 @@ async function main() {
   const defaultModelPaths = [
     "/splat/scenes/model_1.splat",
     "/splat/scenes/model_2.splat",
+    "/splat/scenes/model_1.splat",
     // Add more model paths here in the future like:
     // "/splat/scenes/another_model.splat",
     // "/splat/scenes/special_event_model.splat"
