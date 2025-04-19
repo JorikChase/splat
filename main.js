@@ -729,11 +729,11 @@ async function main() {
 
   // Construct the URL relative to the local server
   const defaultModelPaths = [
-    "/scenes/model_1.splat",
-    "/scenes/model_2.splat",
+    "/splat/scenes/model_1.splat",
+    "/splat/scenes/model_2.splat",
     // Add more model paths here in the future like:
-    // "/scenes/another_model.splat",
-    // "/scenes/special_event_model.splat"
+    // "/splat/scenes/another_model.splat",
+    // "/splat/scenes/special_event_model.splat"
   ];
 
   // Function to get a random model path from the list
